@@ -15,38 +15,46 @@ function login() {
   }
 }
 
-// إضافة راكب جديد
-function addPassenger() {
-  const passengerSection = document.getElementById('passengerSection');
-  const passengerDiv = document.createElement('div');
-  passengerDiv.classList.add('passenger');
+ // إضافة راكب جديد
+    function addPassenger() {
+      const passengerSection = document.getElementById('passengerSection');
+      const passengerDiv = document.createElement('div');
+      passengerDiv.classList.add('passenger');
 
-  const name = document.createElement('input');
-  name.setAttribute('type', 'text');
-  name.setAttribute('placeholder', 'اسم الراكب');
-  name.required = true;
+      const name = document.createElement('input');
+      name.setAttribute('type', 'text');
+      name.setAttribute('placeholder', 'اسم الراكب');
+      name.required = true;
 
-  const paymentStatus = document.createElement('select');
-  paymentStatus.innerHTML = `
-    <option value="مدفوع">مدفوع</option>
-    <option value="غير مدفوع">غير مدفوع</option>
-  `;
+      const paymentStatus = document.createElement('select');
+      paymentStatus.innerHTML = `
+        <option value="مدفوع">مدفوع</option>
+        <option value="غير مدفوع">غير مدفوع</option>
+      `;
+      paymentStatus.onchange = updateTotals;
 
-  const removeButton = document.createElement('button');
-  removeButton.innerText = 'إزالة';
-  removeButton.onclick = function() {
-    passengerSection.removeChild(passengerDiv);
-    updateTotals();
-  };
+      const amountPaid = document.createElement('input');
+      amountPaid.setAttribute('type', 'number');
+      amountPaid.setAttribute('placeholder', 'المبلغ المدفوع');
+      amountPaid.setAttribute('min', '0');
+      amountPaid.value = 0;
+      amountPaid.oninput = updateTotals; // لتحديث المبلغ عند تغييره
 
-  passengerDiv.appendChild(name);
-  passengerDiv.appendChild(paymentStatus);
-  passengerDiv.appendChild(removeButton);
+      const removeButton = document.createElement('button');
+      removeButton.innerText = 'إزالة';
+      removeButton.onclick = function() {
+        passengerSection.removeChild(passengerDiv);
+        updateTotals();
+      };
 
-  passengerSection.appendChild(passengerDiv);
-  updateTotals();
-}
+      passengerDiv.appendChild(name);
+      passengerDiv.appendChild(paymentStatus);
+      passengerDiv.appendChild(amountPaid);
+      passengerDiv.appendChild(removeButton);
 
+      passengerSection.appendChild(passengerDiv);
+      updateTotals();
+    }
 // إضافة رسالة جديدة
 function addParcel() {
   const parcelSection = document.getElementById('parcelSection');
