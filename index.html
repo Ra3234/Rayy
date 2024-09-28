@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>درب السلامة - إدارة الرحلات</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="loginSection">
+    <h2>تسجيل الدخول</h2>
+    <label for="username">اسم المستخدم:</label>
+    <input type="text" id="username" required><br>
+    <label for="password">كلمة المرور:</label>
+    <input type="password" id="password" required><br>
+    <button onclick="login()">تسجيل الدخول</button>
+    <p id="errorMessage" style="color: red; display: none;">اسم المستخدم أو كلمة المرور غير صحيحة</p>
+  </div>
+
+  <div id="tripFormSection" style="display: none;">
+    <h1>إدارة رحلات درب السلامة</h1>
+
+    <form id="tripForm">
+      <h3>بيانات الرحلة</h3>
+      <label for="tripDate">تاريخ الرحلة:</label>
+      <input type="date" id="tripDate" required><br>
+
+      <label for="driver">اسم السائق:</label>
+      <input type="text" id="driver" required><br>
+
+      <label for="direction">اتجاه السفر:</label>
+      <select id="direction" required>
+        <option value="صنعاء - عدن">من صنعاء إلى عدن</option>
+        <option value="عدن - صنعاء">من عدن إلى صنعاء</option>
+      </select><br>
+
+      <h3>الركاب</h3>
+      <div id="passengerSection"></div>
+      <button type="button" onclick="addPassenger()">إضافة راكب جديد</button><br>
+
+      <h3>تفاصيل الرسائل (الطرود)</h3>
+      <div id="parcelSection"></div>
+      <button type="button" onclick="addParcel()">إضافة رسالة جديدة</button><br>
+
+      <h3>الإجماليات</h3>
+      <label>إجمالي عدد الركاب:</label>
+      <span id="totalPassengers">0</span><br>
+      <label>إجمالي عدد الرسائل:</label>
+      <span id="totalParcels">0</span><br>
+
+      <button type="submit">إرسال البيانات</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
